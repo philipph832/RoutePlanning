@@ -181,7 +181,7 @@ for i, distance in enumerate(distances):
         cumulative_distance -= 10000
 
 # Add markers for waypoints color by type of amenity
-wegpunkte = folium.FeatureGroup(name='Wegpunkte').add_to(m)
+wegpunkte = folium.FeatureGroup(name='Waypoints').add_to(m)
 for i in range(len(WPs)):
     wegpunkte.add_child(folium.Marker(
         location=[WPs.lat[i], WPs.lon[i]],  # coordinates for the marker
@@ -190,7 +190,7 @@ for i in range(len(WPs)):
     ))
 
 # add markers displaying other information along the path
-strecke = folium.FeatureGroup(name='Streckenpunkte').add_to(m)
+strecke = folium.FeatureGroup(name='Course as points').add_to(m)
 for i in range(len(gpxSpur)):
     strecke.add_child(folium.CircleMarker(
         location=[gpxSpur.lat[i], gpxSpur.lon[i]],
@@ -202,7 +202,7 @@ for i in range(len(gpxSpur)):
 
 # plot line with entire route
 folium.PolyLine(locations=gpxSpur, tooltip=filename).add_to(
-    folium.FeatureGroup(name='Strecke durchgezogen').add_to(m))
+    folium.FeatureGroup(name='Course as line').add_to(m))
 m.fit_bounds(m.get_bounds(), padding=(30, 30))
 
 # include layer control
